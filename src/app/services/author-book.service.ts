@@ -8,6 +8,11 @@ export class AuthorBookService {
   selectedBook: any = {};
   constructor() { }
 
+  /**
+   * Gets selected book from author.
+   *
+   * @param book Book object.
+   */
   public selectedBookFromAuthor(book: any): void {
     this.selectedBook = book;
   }

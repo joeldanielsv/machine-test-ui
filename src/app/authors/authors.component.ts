@@ -10,10 +10,10 @@ import { AuthorBookService } from '../services/author-book.service';
   styleUrls: ['./authors.component.scss']
 })
 export class AuthorsComponent implements OnInit {
-  authors: any[] = [];
-  info: any;
-  selectedBook = new Subject();
-  selectedBookObservable = this.selectedBook.asObservable();
+  authors: any[] = [];                                       // Authors list.
+  info: any;                                                 // Author info.
+  selectedBook = new Subject();                              // Selected book subject.
+  selectedBookObservable = this.selectedBook.asObservable(); // Selected book observable.
 
   constructor(
       private authorsService: AuthorsService,
@@ -22,9 +22,13 @@ export class AuthorsComponent implements OnInit {
       ) { }
 
   ngOnInit(): void {
+    // 1. Gets the authors list and sets in view.
     this.showAuthors();
   }
 
+  /**
+   * Gets the authors list and sets in view.
+   */
   public showAuthors(): void {
     this.authorsService.getAuthors().then(authors => {
       this.authors = authors;
@@ -33,6 +37,11 @@ export class AuthorsComponent implements OnInit {
     });
   }
 
+  /**
+   * Shows selected author info.
+   *
+   * @param authorId Author ID.
+   */
   public showInfo(authorId: any): void {
     this.authorsService.getAuthorInfo(authorId).then(info => {
       this.info = info;
@@ -41,6 +50,11 @@ export class AuthorsComponent implements OnInit {
     });
   }
 
+  /**
+   * Shows book detail of the author.
+   *
+   * @param book Book object.
+   */
   public showBookDetails(book: any) {
     this.authorBookService.selectedBookFromAuthor(book);
     this.route.navigate(['../books']);

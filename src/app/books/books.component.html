@@ -1,31 +1,45 @@
-<div class="container-fluid" style="height:100vh">
-    <div class="row">
-      <div class="col-3">
-        <div class="row">
-          <div class="col-2"><strong>Sort</strong></div>
-          <div class="col-5">Name</div>
-          <div class="col-5">Price</div>
-        </div>
-      </div>
-      <div class="col-3">
-        <div class="row">
-          <div class="col-2"><strong>Search</strong></div>
-          <div class="col-5">
-            <input type="textbox" (keyup)="searchByNameOrDate($event)">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row wrapper">
-      <div class="col-3 books">
-        <li class="book-item" *ngFor="let book of displayBooks" (click)="showInfo(book.bookId)">{{book.bookName}}</li>
-      </div>
-      <div class="col-9 book-info">
-        <div class="row">
-            <p class="col-12">Book name: {{info?.bookName}}</p>
-            <p class="col-12">Book price: {{info?.bookPrice}}</p>
-            <p class="col-12">Created date: {{info?.createDate}}</p>
-            <p class="col-12">Published date: {{info?.publishedDate}}</p>
-        </div>
-    </div>
+<div style="display:inline-block; margin: 10px"><strong>Sort</strong></div>
+<div style="display:inline-block;margin: 5px" title="Sorts books by name"
+  (click)="sortBooksByName()">Name</div>
+<div style="display:inline-block; margin:5px" title="Sorts books by price"
+  (click)="sortBooksByPrice()">Price</div>
+
+<input id="fromDate" type="date" name="fromDate" title="Enter start date"
+  style="width:150px;margin: 5px" #fromDate>
+<input id="toDate" type="date" name="toDate" title="Enter end date"
+  style="width:150px;margin:10px" #toDate />
+<button type="button" class="btn btn-primary"
+  (click)="filterBooksByDate(fromDate,toDate)">Search</button>
+
+<div style="display:inline-block;margin: 10px"><strong>Search</strong></div>
+<input type="textbox" placeholder="Filter by book name" title="Filter books by
+  name" (keyup)="searchByName($event)">
+
+<div style="display:inline-block; margin: 10px"><strong>Filter by price range
+    ($)</strong></div>
+<div style="display:inline-block">From
+  <input type="textbox" style="width:94px" #from>
 </div>
+<div style="display:inline-block; margin: 10px">To
+  <input type="textbox" style="width:94px" #to>
+</div>
+<div style="display:inline-block;">
+  <button type="button" class="btn btn-primary"
+    (click)="filterPriceRange(from.value, to.value)">Submit</button>
+</div>
+
+<div class="container-fluid" style="height:100vh">
+  <div class="row wrapper">
+    <div class="col-3 books">
+      <li class="book-item" *ngFor="let book of booksView.displayBooks"
+        (click)="showInfo(book.bookId)">{{book.bookName}}</li>
+    </div>
+    <div class="col-9 book-info">
+      <div class="row">
+        <p class="col-12">Book name: {{info?.bookName}}</p>
+        <p class="col-12">Book price: {{info?.bookPrice}}</p>
+        <p class="col-12">Created date: {{info?.createDate}}</p>
+        <p class="col-12">Published date: {{info?.publishedDate}}</p>
+      </div>
+    </div>
+  </div>
