@@ -1,0 +1,15 @@
+<div class="container-fluid" style="height:100vh">
+    <div class="row wrapper">
+      <div class="col-3 authors">
+        <li class="book-item" *ngFor="let author of authors" (click)="showInfo(author.authorId)">{{author.authorName}}</li>
+      </div>
+      <div class="col-9 author-info">
+        <div class="row">
+            <p class="col-12"><strong>Author name:</strong> {{info?.authorName}}</p>
+            <p class="col-12"><strong>Books:</strong> </p>
+            <li class="col-12" *ngFor="let book of info?.book" (click)="showBookDetails(book)">
+                {{book.bookName}}
+            </li>
+        </div>
+    </div>
+</div>

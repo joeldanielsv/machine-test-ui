@@ -1,0 +1,31 @@
+<div class="container-fluid" style="height:100vh">
+    <div class="row">
+      <div class="col-3">
+        <div class="row">
+          <div class="col-2"><strong>Sort</strong></div>
+          <div class="col-5">Name</div>
+          <div class="col-5">Price</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="row">
+          <div class="col-2"><strong>Search</strong></div>
+          <div class="col-5">
+            <input type="textbox" (keyup)="searchByNameOrDate($event)">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row wrapper">
+      <div class="col-3 books">
+        <li class="book-item" *ngFor="let book of displayBooks" (click)="showInfo(book.bookId)">{{book.bookName}}</li>
+      </div>
+      <div class="col-9 book-info">
+        <div class="row">
+            <p class="col-12">Book name: {{info?.bookName}}</p>
+            <p class="col-12">Book price: {{info?.bookPrice}}</p>
+            <p class="col-12">Created date: {{info?.createDate}}</p>
+            <p class="col-12">Published date: {{info?.publishedDate}}</p>
+        </div>
+    </div>
+</div>
